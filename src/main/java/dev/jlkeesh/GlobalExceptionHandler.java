@@ -16,7 +16,7 @@ import java.util.function.BiFunction;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler(ItemNotFoundException.class)
+  /*  @ExceptionHandler(ItemNotFoundException.class)
     public ResponseEntity<AppErrorDTO> handler_404(ItemNotFoundException e, HttpServletRequest request) {
         return ResponseEntity.status(404)
                 .body(AppErrorDTO.builder()
@@ -24,7 +24,7 @@ public class GlobalExceptionHandler {
                         .error_path(request.getRequestURI())
                         .error(e.getMessage())
                         .build());
-    }
+    }*/
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<AppErrorDTO> handler_400(MethodArgumentNotValidException e, HttpServletRequest request) {
