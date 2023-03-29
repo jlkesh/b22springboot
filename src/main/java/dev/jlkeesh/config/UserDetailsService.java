@@ -37,12 +37,11 @@ public class UserDetailsService implements org.springframework.security.core.use
     }
 
     public String generateToken(@NonNull GenerateTokenDTO dto) {
-        UserDetails userDetails = loadUserByUsername(dto.username());
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
-                new UsernamePasswordAuthenticationToken(userDetails.getUsername(), null, userDetails.getAuthorities());
+                new UsernamePasswordAuthenticationToken(dto.username(), dto.password());
         Authentication authenticate = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
         if (!authenticate.isAuthenticated())
             throw new RuntimeException("Bad credentials");
-        return jwtUtils.generateToken(Map.of(), userDetails.getAuthUser());
+        return jwtUtils.generateToken(Map.of(), loadUserByUsername(dto.username()).getAuthUser());
     }
 }
