@@ -16,8 +16,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
-@OpenAPIDefinition
-@SecurityScheme(name = "Auth", scheme = "Bearer", type = SecuritySchemeType.HTTP, in = SecuritySchemeIn.HEADER)
+@OpenAPIDefinition(
+        security = @SecurityRequirement(name = "Bearer Authentication")
+)
+@SecurityScheme(
+        name = "Bearer Authentication",
+        type = SecuritySchemeType.HTTP,
+        bearerFormat = "JWT",
+        scheme = "bearer"
+)
 public class Main {
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
