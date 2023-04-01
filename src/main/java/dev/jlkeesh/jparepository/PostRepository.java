@@ -21,7 +21,7 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
     @Query(name = "get_posts_by_userids_jpql")
     List<Post> findAlByUsers(@Param("userIds") Collection<Integer> userIds);
 
-    @Query(value = "from Post t where t.userId <> 3")
+    @Query(value = "from Post t where t.userId <> 3 order by random() ")
     Page<Post> getAll(Pageable pageable);
 
     @Query(nativeQuery = true,
