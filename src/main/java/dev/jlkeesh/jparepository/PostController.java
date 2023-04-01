@@ -1,5 +1,6 @@
 package dev.jlkeesh.jparepository;
 
+import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -56,6 +57,18 @@ public class PostController {
         /*return postRepository.findAll(pageable);*/
         /*return postRepository.getAll(pageable);*/
         return postRepository.getAllWithNativeQuery(pageable);
+    }
+
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Integer id) {
+        postRepository.deleteById(id);
+    }
+
+    @DeleteMapping("/query/{id}")
+    @Transactional/*(rollbackOn = , dontRollbackOn =  )*/
+    public void deleteWithQuery(@PathVariable Integer id) {
+        postRepository.deleteByPostId(id);
     }
 
 

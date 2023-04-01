@@ -1,9 +1,11 @@
 package dev.jlkeesh.jparepository;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.Past;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -31,4 +33,8 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
     Page<Post> getAllWithNativeQuery(Pageable pageable);
 
 
+    /*@Query("delete from Post  t where  t.id = ?1")*/
+    @Modifying(flushAutomatically = true)
+    @Query("delete from Post  t where  t.id = ?1")
+    void deleteByPostId(Integer id);
 }

@@ -3,7 +3,8 @@ package dev.jlkeesh;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.jlkeesh.jparepository.Post;
+import dev.jlkeesh.customrepository.User;
+import dev.jlkeesh.customrepository.UserRepo;
 import dev.jlkeesh.jparepository.PostRepository;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import org.springframework.boot.CommandLineRunner;
@@ -19,10 +20,15 @@ import java.util.List;
 public class Main {
     private final PostRepository postRepository;
     private final ObjectMapper objectMapper;
+    private final UserRepo userRepository;
 
-    public Main(PostRepository postRepository, ObjectMapper objectMapper) {
+    public Main(
+            PostRepository postRepository,
+                ObjectMapper objectMapper,
+                UserRepo userRepository) {
         this.postRepository = postRepository;
         this.objectMapper = objectMapper;
+        this.userRepository = userRepository;
     }
 
     public static void main(String[] args) {
@@ -30,13 +36,13 @@ public class Main {
     }
 
 
-    /*@Bean*/
+    @Bean
     CommandLineRunner runner() {
         return args -> {
-            URL src = new URL("https://jsonplaceholder.typicode.com/posts");
-            List<Post> posts = objectMapper.readValue(src, new TypeReference<>() {
+            URL src = new URL("https://jsonplaceholder.typicode.com/users");
+            List<User> users = objectMapper.readValue(src, new TypeReference<>() {
             });
-            postRepository.saveAll(posts);
+            userRepository.saveAll(users);
         };
     }
 }
