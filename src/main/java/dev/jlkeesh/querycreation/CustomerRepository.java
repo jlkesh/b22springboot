@@ -11,8 +11,9 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
     void deleteByAgeLessThan(int age);
 
 
-    @Query("select new dev.jlkeesh.querycreation.CustomerDTO(c.id, c.fullName) from Customer c")
-    List<CustomerDTO> customersInfo();
+    @Query(nativeQuery = true, value = "select id, full_name, age from customer")
+        /*@Query("select new dev.jlkeesh.querycreation.CustomerDTO(c.id, c.fullName) from Customer c")*/
+    List<Object[]> customersInfo();
 
     List<Customer> findAllByPhoneNumberStartingWith(String phone);
 

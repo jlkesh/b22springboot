@@ -52,7 +52,9 @@ public class CustomerController {
 
     @GetMapping("/customersInfo")
     public List<CustomerDTO> customersInfo() {
-        return customerRepository.customersInfo();
+        return customerRepository.customersInfo().stream()
+                .map(ee -> new CustomerDTO((int) ee[0], (String) ee[1], (int) ee[2]))
+                .toList();
     }
 
 }

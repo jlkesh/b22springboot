@@ -1,9 +1,7 @@
 package dev.jlkeesh.querycreation;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -12,7 +10,23 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Customer  {
+
+/*@SqlResultSetMapping(
+        name = "toCustomerDTO",
+        classes = @ConstructorResult(
+                targetClass = CustomerDTO.class,
+                columns = {
+                        @ColumnResult(name = "id", type = Integer.class),
+                        @ColumnResult(name = "full_name", type = String.class)
+                }
+        )
+)
+@NamedNativeQuery(
+        name = "customersInfo",
+        query = "select id, full_name from customer",
+        resultSetMapping = "toCustomerDTO"
+)*/
+public class Customer {
     @Id
     @GeneratedValue
     private Integer id;
