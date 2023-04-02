@@ -32,7 +32,7 @@ public class CustomerController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Transactional
     public void deleteCustomerUnderAge(@RequestParam int age) {
-         customerRepository.deleteByAgeLessThan(age);
+        customerRepository.deleteByAgeLessThan(age);
     }
 
     @GetMapping("/phone")
@@ -40,9 +40,19 @@ public class CustomerController {
         return customerRepository.findAllByPhoneNumberStartingWith(phone);
     }
 
-    @GetMapping("/class/projecttion")
-    public List<CustomerDTO> classProjection(@RequestParam int age) {
-        return customerRepository.findAllClassProjection();
+    @GetMapping("/class-projection")
+    public List<CustomerDTO> classProjection(@RequestParam String phone) {
+        return customerRepository.findAllByPhoneNumberEndingWith(phone);
+    }
+
+    @GetMapping("/interface-projection")
+    public List<ICustomerDTO> interfaceProjection(@RequestParam int age) {
+        return customerRepository.findAllByAgeGreaterThan(age);
+    }
+
+    @GetMapping("/customersInfo")
+    public List<CustomerDTO> customersInfo() {
+        return customerRepository.customersInfo();
     }
 
 }
