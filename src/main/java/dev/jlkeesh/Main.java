@@ -11,6 +11,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.web.HateoasPageableHandlerMethodArgumentResolver;
+import org.springframework.data.web.PagedResourcesAssembler;
 
 import java.net.URL;
 import java.util.List;
@@ -33,5 +35,10 @@ public class Main {
             });
             postRepository.saveAll(posts);
         };
+    }
+
+    @Bean
+    public PagedResourcesAssembler<Post> postPagedResourcesAssembler() {
+        return new PagedResourcesAssembler<>(new HateoasPageableHandlerMethodArgumentResolver(), null);
     }
 }
