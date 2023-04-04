@@ -5,14 +5,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.jlkeesh.post.Post;
 import dev.jlkeesh.post.PostRepository;
-
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.web.HateoasPageableHandlerMethodArgumentResolver;
-import org.springframework.data.web.PagedResourcesAssembler;
 
 import java.net.URL;
 import java.util.List;
@@ -27,18 +24,11 @@ public class Main {
 
 
     @Bean
-    CommandLineRunner runner(ObjectMapper objectMapper,
-                             PostRepository postRepository) {
+    CommandLineRunner runner(ObjectMapper objectMapper, PostRepository postRepository) {
         return args -> {
-            postRepository.deleteAll();
             List<Post> posts = objectMapper.readValue(new URL("https://jsonplaceholder.typicode.com/posts"), new TypeReference<>() {
             });
             postRepository.saveAll(posts);
         };
-    }
-
-    @Bean
-    public PagedResourcesAssembler<Post> postPagedResourcesAssembler() {
-        return new PagedResourcesAssembler<>(new HateoasPageableHandlerMethodArgumentResolver(), null);
     }
 }
