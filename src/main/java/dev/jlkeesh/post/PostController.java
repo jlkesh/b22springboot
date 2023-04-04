@@ -59,7 +59,7 @@ public class PostController {
             @RequestParam(value = "page", defaultValue = "0") int page) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Post> postPage = postRepository.findAll(pageable);
-        return pagedResourcesAssembler.toModel(postPage, zpostModelAssembler);
+        return pagedResourcesAssembler.toModel(postPage, postModelAssembler);
     }
 
 
