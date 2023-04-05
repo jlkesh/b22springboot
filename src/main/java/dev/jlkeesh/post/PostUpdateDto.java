@@ -7,9 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Post {
-
-    private Integer id;
+public class PostUpdateDto {
     private String title;
     private String body;
 }

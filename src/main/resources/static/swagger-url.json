@@ -1,0 +1,16 @@
+{
+  "urls": [
+    {
+      "name": "annotation",
+      "url": "/v3/api-docs/annotation"
+    },
+    {
+      "name": "yaml",
+      "url": "http://localhost:8080/config/yaml"
+    },
+    {
+      "name": "json",
+      "url": "http://localhost:8080/config/json"
+    }
+  ]
+}

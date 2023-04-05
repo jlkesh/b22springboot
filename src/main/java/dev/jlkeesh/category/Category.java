@@ -1,4 +1,4 @@
-package dev.jlkeesh.post;
+package dev.jlkeesh.category;
 
 import lombok.*;
 
@@ -7,9 +7,8 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Post {
-
+public class Category {
     private Integer id;
-    private String title;
-    private String body;
+    private String name;
+    private String code;
 }
