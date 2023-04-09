@@ -16,7 +16,7 @@ class BookMapperTest {
     @Test
     void toBook() {
         Map<String, Object> params = new HashMap<>();
-        params.put("id", UUID.randomUUID().toString());
+        params.put("id", UUID.randomUUID());
         params.put("name", "Bobomdan Qolgan Dalalar");
         params.put("author", "Primqul Qodirov");
         params.put("publishedDate", LocalDate.of(1990, 1, 1));
