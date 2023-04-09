@@ -14,11 +14,12 @@ public class NotificationSenderService {
     @Async("your")
     public void send(String username) {
         /*Runnable runnable = () -> {*/
-            try {
-                TimeUnit.SECONDS.sleep(4);
-            } catch (Exception ignored) {
-            }
-            log.info("Notification successfully sent to {} !!!", username);
+        try {
+            TimeUnit.SECONDS.sleep(4);
+        } catch (Exception ignored) {
+        }
+        log.info("Notification successfully sent to {} !!!", username);
+        throw new RuntimeException("Exception For Fun");
         /*};*/
         /*new Thread(runnable).start();*/
         /*executorService.submit(runnable);*/
