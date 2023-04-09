@@ -1,0 +1,37 @@
+spring:
+  profiles:
+    active: test, prod
+server:
+  port: 9090
+properties:
+  example: >
+    Spring Is Framework Of Frameworks
+    Spring Is Framework Of Frameworks
+    Spring Is Framework Of Frameworks
+    Spring Is Framework Of Frameworks
+    Spring Is Framework Of Frameworks
+
+  languages:
+    - Java
+    - Python
+    - Scala
+    - Groovy
+  map: "{ 'jlkesh': '123', 'madina': '1', 'nodira': '2', 'baxtigul': '3' }"
+  student: { 'id': 1,'name': 'Nodira Shorahmedova' }
+
+  students: [ { id: 1, 'name': 'Nodira Shorahmedova', 'age': 20, 'phone': 903211212 }, { id: 1, 'name': 'Nodira Shorahmedova', 'age': 20, 'phone': 903211212 } ]
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+server:
+  port: 7979
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+server:
+  port: 8090

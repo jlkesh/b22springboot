@@ -24,10 +24,10 @@ public class Main {
     @Value("${properties.example:'Default Value'}")
     private String example1;
 
-    @Value("#{'${properties.example.list}'.split('#')}")
-    private List<String> list;
+/*    @Value("${properties.languages:sad}")
+    private List<String> list;*/
 
-    @Value("#{${properties.example.map}}")
+    @Value("#{${properties.map}}")
     private Map<String, String> map;
 
     private final StudentConfigurationProperties studentConfigurationProperties;
@@ -47,7 +47,7 @@ public class Main {
 
     @GetMapping("/prop-list")
     public List<String> example2() {
-        return list;
+        return studentConfigurationProperties.getLanguages();
     }
 
     @GetMapping("/prop-map")

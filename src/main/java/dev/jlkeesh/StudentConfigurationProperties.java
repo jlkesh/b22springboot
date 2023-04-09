@@ -6,10 +6,19 @@ import org.springframework.context.annotation.Configuration;
 import java.util.List;
 
 
-@ConfigurationProperties(prefix = "properties.example")
+@ConfigurationProperties(prefix = "properties")
 public class StudentConfigurationProperties {
     private Student student;
+    private List<String> languages;
     private List<Student> students;
+
+    public List<String> getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(List<String> languages) {
+        this.languages = languages;
+    }
 
     public Student getStudent() {
         return student;
