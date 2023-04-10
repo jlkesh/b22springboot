@@ -2,7 +2,6 @@ spring:
   profiles:
     active:
       - dev
-      - prod
 
 ---
 
@@ -13,7 +12,18 @@ spring:
   task:
     execution:
       thread-name-prefix: adash-dev-
-
+  mail:
+    host: sandbox.smtp.mailtrap.io
+    username: 7ec49d0db277fa
+    password: e1d57537bcd098
+    port: 587
+    properties:
+      smtp:
+        auth: true
+        starttls:
+          enable: true
+  freemarker:
+    template-loader-path: classpath:/
 ---
 
 spring:

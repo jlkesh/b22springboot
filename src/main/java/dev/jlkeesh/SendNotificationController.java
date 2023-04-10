@@ -1,9 +1,6 @@
 package dev.jlkeesh;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/notification")
@@ -21,6 +18,22 @@ public class SendNotificationController {
         notificationSenderService.send(username);
 
         return "Notification successfully sent to " + username + " !!!";
+    }
+    @PostMapping
+    public String sendActivationLink(
+            @RequestParam String username,
+            @RequestParam String email){
+
+        notificationSenderService.sendActivationLink(username, email);
+
+        return "Notification successfully sent to " + username + " !!!";
+    }
+    @PostMapping("/report")
+    public String sendActivationLink(){
+
+        notificationSenderService.sendWeeklyReport(null,"email");
+
+        return "Notification successfully sent to " + null + " !!!";
     }
 
 }
