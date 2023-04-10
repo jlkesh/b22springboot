@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 public class NotificationSenderService {
     /*ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());*/
 
-    @Async("your")
+    @Async
     public void send(String username) {
         /*Runnable runnable = () -> {*/
         try {
@@ -19,7 +19,7 @@ public class NotificationSenderService {
         } catch (Exception ignored) {
         }
         log.info("Notification successfully sent to {} !!!", username);
-        throw new RuntimeException("Exception For Fun");
+        /*throw new RuntimeException("Exception For Fun");*/
         /*};*/
         /*new Thread(runnable).start();*/
         /*executorService.submit(runnable);*/

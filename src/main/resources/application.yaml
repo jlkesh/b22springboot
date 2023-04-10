@@ -1,0 +1,25 @@
+spring:
+  profiles:
+    active:
+      - dev
+      - prod
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+  task:
+    execution:
+      thread-name-prefix: adash-dev-
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+  task:
+    execution:
+      thread-name-prefix: adash-prod-
