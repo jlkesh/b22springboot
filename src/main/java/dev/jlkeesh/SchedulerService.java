@@ -45,18 +45,18 @@ public class SchedulerService {
         log.info("set zero to login try count field...................");
     }
 
-    //@Scheduled(cron = "10-40/5 50-55/1 * * * *")
+    @Scheduled(cron = "10-40/5 50-55/1 * * * *")
     public void sendNotification5() throws InterruptedException {
         log.info("Pull Blocked users...................");
     }
 
     @Async
-    @Scheduled(cron = "59 17 16 L-19 * ?")
+    @Scheduled(cron = "59 17 16 L-5 * ?")
     public void sendNotification6() throws InterruptedException {
         log.info("Pull Blocked users...................");
     }
 
-    @Scheduled(cron = "@daily")
+    @Scheduled(cron = "@hourly")
     public void sendNotification7() throws InterruptedException {
         log.info("Daily Pull Blocked users...................");
     }
