@@ -1,0 +1,8 @@
+#scheduler:
+#  enable: 0
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
