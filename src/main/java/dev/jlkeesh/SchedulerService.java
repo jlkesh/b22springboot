@@ -1,12 +1,20 @@
 package dev.jlkeesh;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 @Component
@@ -18,11 +26,20 @@ import java.util.concurrent.TimeUnit;
 public class SchedulerService {
 
     /*private final EntityManager entityManager;*/
+    private final ObjectMapper objectMapper;
 
-    //@Scheduled(fixedDelay = 2, timeUnit = TimeUnit.SECONDS)
-    public void sendNotification() throws InterruptedException {
-        log.info("Notification (Fixed Delay) : " + new Date());
-        TimeUnit.MILLISECONDS.sleep(500);
+    public SchedulerService(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
+    }
+
+    // @Scheduled(fixedDelay = 2, timeUnit = TimeUnit.SECONDS)
+    public void sendNotification() throws InterruptedException, IOException {
+        for (int i = 0; i < 10; i++) {
+            URL url = new URL("https://jsonplaceholder.typicode.com/posts/"+new Random().nextInt(1,100));
+            Map<String, Object> mapList = objectMapper.readValue(url, new TypeReference<>() {
+            });
+            log.info("Notification (Fixed Delay) : " + mapList);
+        }
     }
 
     // @Scheduled(fixedRate = 2, timeUnit = TimeUnit.SECONDS)

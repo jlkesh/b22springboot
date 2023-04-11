@@ -1,8 +1,5 @@
-#scheduler:
-#  enable: 0
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
+logging:
+  level:
+    org:
+      zalando:
+        logbook: trace
